@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>For Rawen</title>
+    <style>
+      :root {
+        --bg: #0f1724;
+        --card: #0b1220;
+        --accent: #ff7eb3;
+        --accent2: #7ee5ff;
+        --glass: rgba(255, 255, 255, 0.04);
+      }
+      * {
+        box-sizing: border-box;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(
+            1200px 600px at 10% 10%,
+            rgba(127, 42, 187, 0.12),
+            transparent 6%
+          ),
+          radial-gradient(
+            900px 400px at 90% 90%,
+            rgba(0, 190, 255, 0.06),
+            transparent 6%
+          ),
+          var(--bg);
+        color: #e6eef8;
+      }
+      .card {
+        width: min(920px, 94%);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        border-radius: 18px;
+        padding: 28px;
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 20px;
+        box-shadow: 0 8px 40px rgba(2, 6, 23, 0.6);
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* left content */
+      .hero {
+        padding: 18px 14px;
+      }
+      .name {
+        font-size: 44px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        margin: 0 0 6px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .subtitle {
+        margin: 0 0 14px;
+        color: #bcd6ee;
+      }
+      .poem {
+        background: var(--glass);
+        padding: 14px;
+        border-radius: 12px;
+        line-height: 1.5;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+        font-size: 15px;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 14px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        cursor: pointer;
+        border: 0;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        background: linear-gradient(90deg, var(--accent), #ffb3d9);
+        color: #071028;
+        box-shadow: 0 6px 18px rgba(255, 126, 179, 0.12);
+        transition: all 0.3s ease;
+        font-size: 16px;
+      }
+      .btn:hover {
+        transform: scale(1.05);
+      }
+      .btn.alt {
+        background: transparent;
+        color: #cfe9ff;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: none;
+      }
+      .btn.alt:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      /* right column */
+      .photoCard {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        border-radius: 14px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        justify-content: center;
+      }
+      .avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        display: grid;
+        place-items: center;
+        font-size: 50px;
+        font-weight: 800;
+        color: #071028;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        transition: background 0.5s ease;
+      }
+      .meta {
+        color: #bcd6ee;
+        text-align: center;
+      }
+      .small {
+        font-size: 13px;
+        color: #9fb7d8;
+      }
+
+      /* confetti pieces */
+      .confetti {
+        pointer-events: none;
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .piece {
+        position: absolute;
+        width: 10px;
+        height: 16px;
+        opacity: 0.95;
+        transform-origin: center;
+        animation: fall 3s linear infinite;
+        border-radius: 2px;
+      }
+      @keyframes fall {
+        0% {
+          transform: translateY(-20vh) rotate(0) translateX(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(120vh) rotate(540deg) translateX(80px);
+          opacity: 0.9;
+        }
+      }
+
+      /* flower image in heading */
+      .flower-img {
+        width: 36px;
+        height: 36px;
+      }
+
+      /* responsive */
+      @media (max-width: 880px) {
+        .card {
+          grid-template-columns: 1fr;
+          padding: 18px;
+        }
+        .photoCard {
+          order: -1;
+        }
+        .name {
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card" id="card">
+      <div class="hero">
+        <h1 class="name">
+          For Rawen
+          <img src="flower-png.webp" alt="flower" class="flower-img" />
+        </h1>
+        <p class="subtitle">A little something just for you.</p>
+
+        <div class="poem" id="poem">
+          <p><strong>ئەی چرای تە،</strong></p>
+          <p>
+            من دڵم بۆت پێشکەش دەکەم،<br />
+            لە دووریت من بی‌کسم، هەموو کۆن و نەزیکم.<br />
+            تۆ هەموو جهانی‌م، ڕووناکی شەو و ڕۆژم.<br />
+            بێتۆ، هەر شتێکم بێ مەنا، هەر هەوا بێ رۆژم.
+          </p>
+          <p class="small">A tiny gift from sai</p>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="openGiftBtn">Open a gift</button>
+          <button class="btn alt" id="surpriseBtn">Surprise color</button>
+        </div>
+      </div>
+
+      <div class="photoCard">
+        <div class="avatar" id="avatar">R</div>
+        <div class="meta">
+          <div style="font-weight: 700">Rawen</div>
+          <div class="small">A woman who deserves something</div>
+        </div>
+      </div>
+
+      <div class="confetti" id="confetti"></div>
+    </div>
+
+    <script>
+      // create confetti pieces
+      const confetti = document.getElementById("confetti");
+      const colors = ["#ff7eb3", "#7ee5ff", "#ffd27e", "#a6ffb0", "#c7a7ff"];
+      for (let i = 0; i < 28; i++) {
+        const p = document.createElement("div");
+        p.className = "piece";
+        const size = 6 + Math.random() * 14;
+        p.style.width = size + "px";
+        p.style.height = size * 1.4 + "px";
+        p.style.left = Math.random() * 100 + "%";
+        p.style.top = Math.random() * -40 + "vh";
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        p.style.opacity = 0.9 - Math.random() * 0.25;
+        p.style.animationDuration = 2.6 + Math.random() * 2.4 + "s";
+        p.style.transform =
+          "rotate(" + Math.floor(Math.random() * 360) + "deg)";
+        confetti.appendChild(p);
+      }
+
+      // open gift button opens a new tab
+      document.getElementById("openGiftBtn").addEventListener("click", () => {
+        // Replace this URL with your actual gift page
+        window.open("gift.html", "_blank");
+      });
+
+      // surprise color change for avatar gradient
+      document.getElementById("surpriseBtn").addEventListener("click", () => {
+        const g1 =
+          "#" +
+          Math.floor(Math.random() * 16777215)
+            .toString(16)
+            .padStart(6, "0");
+        const g2 =
+          "#" +
+          Math.floor(Math.random() * 16777215)
+            .toString(16)
+            .padStart(6, "0");
+        document.getElementById(
+          "avatar"
+        ).style.background = `linear-gradient(135deg, ${g1}, ${g2})`;
+      });
+      S;
+      // personalize by name
+      const name = "Rawen";
+      document.getElementById("avatar").innerText = name[0].toUpperCase();
+      document.querySelector(
+        ".name"
+      ).innerHTML = `For ${name} <img src="flower-png.webp" alt="flower" class="flower-img">`;
+      document.querySelector(".meta > div").innerText = name;
+    </script>
+  </body>
+</html>
