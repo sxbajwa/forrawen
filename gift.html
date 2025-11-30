@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gift for Rawen</title>
+
+    <!-- Google Font: Matemasie -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Matemasie&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Reset and body */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        color: white;
+        background: #0f1724;
+        overflow-y: auto; /* allow scrolling */
+        position: relative;
+        text-align: center;
+        padding: 20px;
+      }
+
+      /* Heading */
+      h1 {
+        font-family: "Matemasie", cursive;
+        font-size: 8vw;
+        max-font-size: 60px;
+        background: linear-gradient(90deg, #ff7eb3, #7ee5ff);
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      /* Gift box */
+      .gift-box {
+        display: inline-block;
+        margin: 20px auto;
+        padding: 10px;
+        border: 4px solid #ff7eb3;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(255, 126, 179, 0.5);
+        background: rgba(255, 255, 255, 0.05);
+        animation: fadeIn 1s ease forwards;
+        max-width: 90vw;
+      }
+
+      .gift-box img {
+        width: 100%;
+        height: auto;
+        max-height: 50vh; /* limit height on small screens */
+        border-radius: 12px;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Hearts */
+      .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: red;
+        transform: rotate(-45deg);
+        opacity: 0.8;
+        border-radius: 2px;
+        animation: heartMove 4s linear forwards;
+      }
+      .heart::before,
+      .heart::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: red;
+        border-radius: 50%;
+      }
+      .heart::before {
+        top: -10px;
+        left: 0;
+      }
+      .heart::after {
+        left: 10px;
+        top: 0;
+      }
+      @keyframes heartMove {
+        0% {
+          transform: translateY(0) rotate(-45deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-400px) rotate(-45deg) translateX(100px);
+          opacity: 0;
+        }
+      }
+
+      /* Tap hint */
+      .tap-hint {
+        font-size: 4vw;
+        opacity: 0.7;
+        margin: 15px 0;
+      }
+
+      /* Responsive adjustments */
+      @media (min-width: 600px) {
+        h1 {
+          font-size: 50px;
+        }
+        .tap-hint {
+          font-size: 16px;
+        }
+        .gift-box img {
+          max-height: 400px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>For Rawen ＼（〇_ｏ）／</h1>
+
+    <!-- Gift Box -->
+    <div class="gift-box">
+      <img src="hokki.gif" alt="Hokki GIF" />
+    </div>
+
+    <!-- Tap hint -->
+    <p class="tap-hint">Tap anywhere to play the song 🎵</p>
+
+    <!-- Audio -->
+    <audio id="giftSong" src="Lovers Rock - TV Girl.mp3" preload="auto"></audio>
+
+    <script>
+      // Play audio on first tap
+      let played = false;
+      document.body.addEventListener("click", () => {
+        if (!played) {
+          const song = document.getElementById("giftSong");
+          song.play().catch(() => console.log("Audio play failed"));
+          played = true;
+        }
+      });
+
+      // Hearts floating
+      function createHeart(side) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        const startX = side === "left" ? -50 : window.innerWidth + 50;
+        heart.style.left = startX + "px";
+        heart.style.top = window.innerHeight - 100 + "px";
+        heart.style.background = [
+          "#ff7eb3",
+          "#7ee5ff",
+          "#ffd27e",
+          "#a6ffb0",
+          "#c7a7ff",
+        ][Math.floor(Math.random() * 5)];
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
+
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => createHeart("left"), i * 200);
+        setTimeout(() => createHeart("right"), i * 200);
+      }
+    </script>
+  </body>
+</html>
